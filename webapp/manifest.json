@@ -1,0 +1,155 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "improve",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.3",
+      "toolsId": "45aab9b3-55a6-4b88-bf24-c51c8868050a"
+    },
+    "dataSources": {
+      "ZSB_ITEM_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSB_ITEM_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZSB_ITEM_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZSB_ITEM/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZSB_ITEM_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.133.4",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.uxap": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "improve.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "fcl",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "improve.view",
+        "async": true
+      },
+      "routes": [
+
+        
+        {
+          "name": "default",
+          "pattern": "",
+          "target": [
+            "list"
+          ]
+        },
+
+        {
+          "name": "list",
+          "pattern": ":layout",
+          "target": [
+            "list"
+          ]
+        },
+
+        {
+					"pattern": "detail/{request_id}/{layout}",
+					"name": "detail",
+					"target": [
+						"list",
+						"detail"
+					]
+				}
+
+      ],
+      "targets": {
+        "TargetImprove": {
+          "id": "Improve",
+          "name": "Improve"
+        },
+
+        "list": {
+					"name": "List",
+					"controlAggregation": "beginColumnPages"
+				},
+
+        "detail": {
+					"name": "Detail",
+					"controlAggregation": "midColumnPages"
+				}
+      }
+    },
+    "rootView": {
+      "viewName": "improve.view.FlexibleColumnLayout",
+      "type": "XML",
+      "id": "fcl",
+      "async": true
+    }
+  }
+}

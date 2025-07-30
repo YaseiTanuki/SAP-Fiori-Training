@@ -1,0 +1,59 @@
+<mvc:View xmlns:smarttable="sap.ui.comp.smarttable" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    controllerName="improve.controller.List"
+    height="100%"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <f:DynamicPage id="dynamicPageID" toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle >
+                <f:heading>
+                    <Title text = "Purchase Request"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:content>
+            <VBox fitContainer="true">
+                <smartfilterbar:SmartFilterBar id="smartFilterBar" entitySet="ZDF_PR"
+                    persistencyKey="SmartFilterBar_Explored"
+                    basicSearchFieldName="request_id"
+                    enableBasicSearch="true">
+                    <smartfilterbar:controlConfiguration>
+                        <smartfilterbar:ControlConfiguration key="request_id">
+                        <smartfilterbar:defaultFilterValues>
+                            <smartfilterbar:SelectOption low="REQ00001"></smartfilterbar:SelectOption>
+                        </smartfilterbar:defaultFilterValues>
+                        </smartfilterbar:ControlConfiguration>
+                    </smartfilterbar:controlConfiguration>
+
+                    <smartfilterbar:layoutData>
+                        <FlexItemData shrinkFactor="0"/>
+                    </smartfilterbar:layoutData>
+                </smartfilterbar:SmartFilterBar>
+
+                <smarttable:SmartTable id="RequestTable" entitySet="ZDF_PR"
+                    smartFilterId="smartFilterBar"
+                    tableType="Table"
+                    enableExport="true"
+                    beforeExport="onBeforeExport"
+                    useVariantManagement="true"
+                    useTablePersonalisation="true"
+                    header="Line Items"
+                    showRowCount="true"
+                    persistencyKey="SmartTableAnalytical_Explored"
+                    enableAutoBinding="true"
+                    class="sapUIResponsiveContentPadding"
+                    enableAutoColumnWidth="true"
+                    editTogglable="true"
+                    app:useSmartToggle="true">
+                    <smarttable:layoutData>
+                        <FlexItemData growFactor="1" baseSize="0%"/>
+                    </smarttable:layoutData>
+                </smarttable:SmartTable>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
