@@ -16,17 +16,37 @@ sap.ui.define([
                 console.log("OKAY");
             }
 
+            var oSmartTable = this.byId("RequestTable");
+            if (oSmartTable) {
+                oSmartTable.attachInitialise(function () {
+                    var oInnerTable = oSmartTable.getTable();
+                    oInnerTable.attachCellClick(this.onListItemPress, this);
+                }.bind(this));
+            }
 
             this.oRouter = this.getOwnerComponent().getRouter();
             this._bDescendingSort = false;
         },
 
-        onlistItemPress: function (oEvent) {
-            var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(1),
-                requestPath = oEvent.getSource().getSelectedItem().getBindingContext().getPath(),
-                request = requestPath.split("/").slice(-1).pop();
+        onListItemPress: function (oEvent) {
+            var oTable = oEvent.getSource();
+            var iRowIndex = oEvent.getParameter("rowIndex");
+            console.log(iRowIndex)
+            var oContext = oTable.getContextByIndex(iRowIndex);
+            console.log(oContext)
+            if (oContext) {
+                var sRequestID = oContext.getProperty("request_id");
+                console.log("Item ID from cell click:", sRequestID);
+                var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(1)
+                console.log("Next UI State:", oNextUIState.layout);
+                if (sRequestID) {
+                    this.oRouter.navTo("detail", {request_id: sRequestID, layout: oNextUIState.layout});
+                    console.log("Navigating to detail with:", sRequestID, oNextUIState.layout);
+                }
+            }
+
             
-            this.oRouter.navTo("detail", {layout: oNextUIState, request_id: request});
+            
         },
 
     });

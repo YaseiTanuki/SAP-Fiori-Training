@@ -5,7 +5,7 @@
 		stateChange="onStateChanged"
 		columnsDistributionChange="onColumnsDistributionChange"
 		restoreFocusOnBackNavigation="true"
-		layout="{layoutModel/layout}"
+		layout="{layoutModel>/layout}"
 		backgroundDesign="Translucent">
 		<layoutData>
 			<FlexibleColumnLayoutData>

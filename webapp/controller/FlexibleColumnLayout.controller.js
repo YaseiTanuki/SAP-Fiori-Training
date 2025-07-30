@@ -22,7 +22,7 @@ sap.ui.define([
         },
 
         onBeforeRouteMatched: function(oEvent) {
-            var oModel = this.getOwnerComponent().getModel();
+            var oLayoutModel = this.getOwnerComponent().getModel("layoutModel");
             var sLayout = oEvent.getParameters().arguments.layout;
             if (!sLayout) {
                 var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(0);
@@ -30,7 +30,8 @@ sap.ui.define([
             }
             
             if (sLayout)
-                oModel.setProperty("/layout", sLayout);
+                oLayoutModel.setProperty("/layout", sLayout);
+                console.log("Set layout to:", sLayout);
         },
         
         onRouteMatched: function (oEvent) {
@@ -45,6 +46,7 @@ sap.ui.define([
             var bIsNavigationArrow = oEvent.getParameter("isNavigationArrow"),
                 sLayout = oEvent.getParameter("layout");
             this._updateUIElements();
+            console.log("Layout now:", sLayout);
 
             if(bIsNavigationArrow) {
                 this.oRouter.navTo(this.currentRouteName, {layout: sLayout, item_id: this.currentItem}, true)
@@ -52,9 +54,9 @@ sap.ui.define([
         },
 
         _updateUIElements: function () {
-            var oModel = this.getOwnerComponent().getModel("layoutModel");
+            var oLayoutModel = this.getOwnerComponent().getModel("layoutModel");
             var oUIState = this.getOwnerComponent().getHelper().getCurrentUIState();
-            oModel.setData(oUIState);
+            oLayoutModel.setData(oUIState);
         },
 
         onExit: function () {

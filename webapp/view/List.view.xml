@@ -48,7 +48,8 @@
                     class="sapUIResponsiveContentPadding"
                     enableAutoColumnWidth="true"
                     editTogglable="true"
-                    app:useSmartToggle="true">
+                    app:useSmartToggle="true"
+                    >
                     <smarttable:layoutData>
                         <FlexItemData growFactor="1" baseSize="0%"/>
                     </smarttable:layoutData>
