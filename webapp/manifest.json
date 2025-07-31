@@ -125,7 +125,15 @@
 						"list",
 						"detail"
 					]
-				}
+				},
+
+        {
+          "pattern": "itemDetail/{item_id}/{layout}",
+          "name": "itemDetail",
+          "target": [
+            "itemDetail"
+          ]
+        }
 
       ],
       "targets": {
@@ -142,7 +150,14 @@
         "detail": {
 					"name": "Detail",
 					"controlAggregation": "midColumnPages"
-				}
+				},
+
+        "itemDetail": {
+        "name": "ItemDetail",
+        "viewId": "itemDetail",
+        "viewLevel": 2,
+        "controlAggregation": "endColumnPages"
+    }
       }
     },
     "rootView": {

@@ -21,14 +21,6 @@
                     persistencyKey="SmartFilterBar_Explored"
                     basicSearchFieldName="request_id"
                     enableBasicSearch="true">
-                    <smartfilterbar:controlConfiguration>
-                        <smartfilterbar:ControlConfiguration key="request_id">
-                        <smartfilterbar:defaultFilterValues>
-                            <smartfilterbar:SelectOption low="REQ00001"></smartfilterbar:SelectOption>
-                        </smartfilterbar:defaultFilterValues>
-                        </smartfilterbar:ControlConfiguration>
-                    </smartfilterbar:controlConfiguration>
-
                     <smartfilterbar:layoutData>
                         <FlexItemData shrinkFactor="0"/>
                     </smartfilterbar:layoutData>

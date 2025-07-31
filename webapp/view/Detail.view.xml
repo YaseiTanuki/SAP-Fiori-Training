@@ -1,59 +1,47 @@
-<mvc:View displayBlock="true" controllerName="improve.controller.Detail" height="100%"
-		xmlns="sap.uxap"
-		xmlns:mvc="sap.ui.core.mvc"
-		xmlns:m="sap.m"
-		xmlns:f="sap.f"
-		xmlns:form="sap.ui.layout.form">
-    
-    <ObjectPageLayout id="ObjectPageLayout"
-            showTitleInHeaderContent="true"
-            alwaysShowContentHeader="false"
-            preserveHeaderStateOnScroll="false"
-            headerContentPinnable="true"
-            isChildPage="true"
-            upperCaseAnchorBar="false">
-        <headerTitle>
-            <ObjectPageDynamicHeaderTitle>
-                <expandedHeading>
-                    <m:Title text="{request_id}"/>
-                </expandedHeading>
+<mvc:View xmlns:smarttable="sap.ui.comp.smarttable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    controllerName="improve.controller.Detail"
+    height="100%"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <f:DynamicPage id="dynamicItemPageID" toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle >
+                <f:heading>
+                    <Title text = "Item "/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
 
-                <snappedHeading>
-                    <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
-                        <m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-                            <m:Title text="{request_id}" wrapping="true" class="sapUiTinyMarginEnd"/>
-                        </m:FlexBox>
-                    </m:FlexBox>
-                </snappedHeading>
+        <f:content>
+            <VBox fitContainer="true">
+                <smartFilterBar:SmartFilterBar id="itemFilterBar" entitySet="ZDF_ITEM" enableBasicSearch="false" liveMode="true"/>
+                <smarttable:SmartTable
+                    id="itemTable"
+                    entitySet="ZDF_ITEM"
+                    smartFilterId="itemFilterBar"
+                    tableType="Table"
+                    enableExport="true"
+                    useVariantManagement="true"
+                    useTablePersonalisation="true"
+                    header="Item List"
+                    persistencyKey="SmartTable_Item"
+                    showRowCount="true">
 
-            </ObjectPageDynamicHeaderTitle>
-        </headerTitle>
-
-        <sections>
-            <ObjectPageSection title="Information">
-                <subSections>
-                    <ObjectPageSubSection>
-                        <blocks>
-                            <form:SimpleForm 
-                                    maxContainerCols="2"
-                                    editable="false"
-                                    layout="ResponsiveGridLayout"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    columnsL="1"
-                                    columnsM="1">
-
-                                <form:content>
-                                    <m:Label text="ID"/>
-									<m:Text text="{request_id}"/>
-                                </form:content>
-                            </form:SimpleForm>
-                        </blocks>
-                    </ObjectPageSubSection>
-                </subSections>
-            </ObjectPageSection>
-        </sections>
-    </ObjectPageLayout>
+                <smarttable:customToolbar>
+                <OverflowToolbar>
+                    <Button text="Thêm" icon="sap-icon://add" press=".onAddItem"/>
+                    <Button text="Sửa" icon="sap-icon://edit" press=".onEditItem"/>
+                    <Button text="Xóa" icon="sap-icon://delete" press=".onDeleteItem"/>
+                </OverflowToolbar>
+                </smarttable:customToolbar>
+                    <smarttable:layoutData>
+                        <FlexItemData growFactor="1" baseSize="0%"/>
+                    </smarttable:layoutData>
+                </smarttable:SmartTable>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

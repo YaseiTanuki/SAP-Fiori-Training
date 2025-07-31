@@ -1,0 +1,42 @@
+<mvc:View
+    controllerName="improve.controller.ItemDetail"
+    xmlns="sap.uxap"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m">
+
+    <ObjectPageLayout
+        id="itemObjectPage"
+        showHeaderContent="true"
+        enableLazyLoading="true">
+
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <content>
+                    <m:Title text="{item_name}" level="H1"/>
+                    <m:Label text="Item ID: {item_id}" />
+                </content>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+
+        <sections>
+            <ObjectPageSection title="General Information">
+                <ObjectPageSubSection>
+                    <m:VBox>
+                        <m:Label text="Item ID"/>
+                        <m:Text text="{item_id}" />
+
+                        <m:Label text="Request ID"/>
+                        <m:Text text="{request_id}" />
+
+                        <m:Label text="Quantity"/>
+                        <m:Text text="{quantity}" />
+
+                        <m:Label text="Total Price"/>
+                        <m:Text text="{total_price} {currency_code}" />
+                    </m:VBox>
+                </ObjectPageSubSection>
+            </ObjectPageSection>
+        </sections>
+
+    </ObjectPageLayout>
+</mvc:View>
