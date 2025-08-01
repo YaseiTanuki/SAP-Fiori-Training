@@ -52,7 +52,6 @@
                             entitySet="ZDF_ITEM"
                             enableBasicSearch="false"
                             liveMode="true"/>
-
                         <smarttable:SmartTable
                             id="itemTable"
                             entitySet="ZDF_ITEM"
@@ -64,18 +63,37 @@
                             persistencyKey="SmartTable_Item"
                             showRowCount="true"
                             smartFilterId="itemFilterBar">
-                        <smarttable:customToolbar>
-                        <m:OverflowToolbar>
-                            <m:Button text="Thêm" icon="sap-icon://add" press=".onAddItem"/>
-                            <m:Button text="Sửa" icon="sap-icon://edit" press=".onEditItem"/>
-                            <m:Button text="Xóa" icon="sap-icon://delete" press=".onDeleteItem"/>
-                        </m:OverflowToolbar>
-                        </smarttable:customToolbar>
                         </smarttable:SmartTable>
                     </m:VBox>
                 </ObjectPageSubSection>
             </ObjectPageSection>
         </sections>
-
     </ObjectPageLayout>
+
+    <!-- Dialog sửa request -->
+    <m:Dialog
+      id="editRequestDialog"
+      title="Sửa thông tin Request"
+      stretchOnPhone="true"
+      class="sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+      
+      <m:VBox class="sapUiSmallMargin">
+        <m:Label text="Creator" labelFor="creatorInput"/>
+        <m:Input id="creatorInput" width="100%" />
+
+        <m:Label text="Status" labelFor="statusInput"/>
+        <m:Input id="statusInput" width="100%" />
+
+        <m:Label text="Total" labelFor="totalInput"/>
+        <m:Input id="totalInput" type="Number" width="100%" />
+
+        <m:Label text="Currency Code" labelFor="currencyInput"/>
+        <m:Input id="currencyInput" width="100%" />
+      </m:VBox>
+
+      <m:buttons>
+        <m:Button text="Cancel" press=".onCancelEditRequest"/>
+        <m:Button text="Save" type="Emphasized" press=".onSaveEditRequest"/>
+      </m:buttons>
+    </m:Dialog>
 </mvc:View>
