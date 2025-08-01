@@ -1,47 +1,81 @@
-<mvc:View xmlns:smarttable="sap.ui.comp.smarttable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:mvc="sap.ui.core.mvc" 
-    displayBlock="true"
+<mvc:View
     controllerName="improve.controller.Detail"
-    height="100%"
-    xmlns="sap.m"
-    xmlns:f="sap.f"
-    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    xmlns:html="http://www.w3.org/1999/xhtml">
-    <f:DynamicPage id="dynamicItemPageID" toggleHeaderOnTitleClick="false">
-        <f:title>
-            <f:DynamicPageTitle >
-                <f:heading>
-                    <Title text = "Item "/>
-                </f:heading>
-            </f:DynamicPageTitle>
-        </f:title>
+    xmlns="sap.uxap"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smarttable="sap.ui.comp.smarttable">
 
-        <f:content>
-            <VBox fitContainer="true">
-                <smartFilterBar:SmartFilterBar id="itemFilterBar" entitySet="ZDF_ITEM" enableBasicSearch="false" liveMode="true"/>
-                <smarttable:SmartTable
-                    id="itemTable"
-                    entitySet="ZDF_ITEM"
-                    smartFilterId="itemFilterBar"
-                    tableType="Table"
-                    enableExport="true"
-                    useVariantManagement="true"
-                    useTablePersonalisation="true"
-                    header="Item List"
-                    persistencyKey="SmartTable_Item"
-                    showRowCount="true">
+    <ObjectPageLayout
+        id="requestObjectPage"
+        showHeaderContent="true"
+        enableLazyLoading="true">
 
-                <smarttable:customToolbar>
-                <OverflowToolbar>
-                    <Button text="Thêm" icon="sap-icon://add" press=".onAddItem"/>
-                    <Button text="Sửa" icon="sap-icon://edit" press=".onEditItem"/>
-                    <Button text="Xóa" icon="sap-icon://delete" press=".onDeleteItem"/>
-                </OverflowToolbar>
-                </smarttable:customToolbar>
-                    <smarttable:layoutData>
-                        <FlexItemData growFactor="1" baseSize="0%"/>
-                    </smarttable:layoutData>
-                </smarttable:SmartTable>
-            </VBox>
-        </f:content>
-    </f:DynamicPage>
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <content>
+                    <m:Title text="{creator}" level="H1"/>
+                    <m:Label text="Request ID: {request_id}" />
+                </content>
+                <actions>
+                    <m:Button text="Sửa Request" icon="sap-icon://edit" press="onEditRequest"/>
+                    <m:Button text="Xóa Request" icon="sap-icon://delete" press="onDeleteRequest"/>
+                </actions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+
+        <sections>
+            <!-- Section 1: Request Info -->
+            <ObjectPageSection title="Thông tin chung">
+                <ObjectPageSubSection>
+                    <m:VBox>
+                        <m:Label text="Creator"/>
+                        <m:Text text="{creator}" />
+
+                        <m:Label text="Created Date"/>
+                        <m:Text text="{created_date}" />
+
+                        <m:Label text="Status"/>
+                        <m:Text text="{status}" />
+
+                        <m:Label text="Total"/>
+                        <m:Text text="{total} {currency_code}" />
+                    </m:VBox>
+                </ObjectPageSubSection>
+            </ObjectPageSection>
+
+            <!-- Section 2: Danh sách Item -->
+            <ObjectPageSection title="Danh sách Item">
+                <ObjectPageSubSection>
+                    <m:VBox>
+                        <smartFilterBar:SmartFilterBar id="itemFilterBar"
+                            entitySet="ZDF_ITEM"
+                            enableBasicSearch="false"
+                            liveMode="true"/>
+
+                        <smarttable:SmartTable
+                            id="itemTable"
+                            entitySet="ZDF_ITEM"
+                            tableType="Table"
+                            enableExport="true"
+                            useVariantManagement="true"
+                            useTablePersonalisation="true"
+                            header="Item List"
+                            persistencyKey="SmartTable_Item"
+                            showRowCount="true"
+                            smartFilterId="itemFilterBar">
+                        <smarttable:customToolbar>
+                        <m:OverflowToolbar>
+                            <m:Button text="Thêm" icon="sap-icon://add" press=".onAddItem"/>
+                            <m:Button text="Sửa" icon="sap-icon://edit" press=".onEditItem"/>
+                            <m:Button text="Xóa" icon="sap-icon://delete" press=".onDeleteItem"/>
+                        </m:OverflowToolbar>
+                        </smarttable:customToolbar>
+                        </smarttable:SmartTable>
+                    </m:VBox>
+                </ObjectPageSubSection>
+            </ObjectPageSection>
+        </sections>
+
+    </ObjectPageLayout>
 </mvc:View>

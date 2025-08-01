@@ -35,7 +35,7 @@ sap.ui.define([
         },
         
         onRouteMatched: function (oEvent) {
-            var sRouteName = oEvent.getParameter("name"),
+            var sRouteName = oEvent.getParameter("request_id"),
             oArguments = oEvent.getParameter("arguments");
             this._updateUIElements();
             this.currentRouteName = sRouteName;
@@ -49,7 +49,7 @@ sap.ui.define([
             console.log("Layout now:", sLayout);
 
             if(bIsNavigationArrow) {
-                this.oRouter.navTo(this.currentRouteName, {layout: sLayout, item_id: this.currentItem}, true)
+                this.oRouter.navTo(this.currentRouteName, {item_id: this.currentItem, layout: sLayout}, true)
             }
         },
 

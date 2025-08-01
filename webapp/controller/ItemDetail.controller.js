@@ -11,7 +11,9 @@ sap.ui.define([
 
         _onItemMatched: function (oEvent) {
             var sItemID = oEvent.getParameter("arguments").item_id;
-            var sPath = "/ZDF_ITEM('" + sItemID + "')";
+            var sRequestID = oEvent.getParameter("arguments").request_id;
+
+            var sPath = "/ZDF_ITEM(request_id='" + sRequestID + "',item_id='" + sItemID + "')";
             console.log("Binding Object Page to:", sPath);
 
             this.getView().bindElement({

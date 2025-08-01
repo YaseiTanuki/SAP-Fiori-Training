@@ -128,11 +128,9 @@
 				},
 
         {
-          "pattern": "itemDetail/{item_id}/{layout}",
+          "pattern": "itemDetail/{item_id}/{request_id}/{layout}",
           "name": "itemDetail",
-          "target": [
-            "itemDetail"
-          ]
+          "target": "itemDetail"
         }
 
       ],
